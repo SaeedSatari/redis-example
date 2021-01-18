@@ -5,7 +5,7 @@ An Example for integrating Spring boot and Redis. Redis is an in-memory data str
 A Cache which instead of evicting an entry on expiration keeps it until it is able to get new Data.
 
 Technically this is done via Spring AOP.
-We create an Around Advice which is guarding our real invocation.
+I create an Around Advice which is guarding our real invocation.
 
 It was created as a drop-in replacement for @Cacheable.
 
