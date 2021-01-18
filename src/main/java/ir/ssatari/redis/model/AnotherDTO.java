@@ -7,10 +7,11 @@ import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
-public class Customer implements Serializable {
+public class AnotherDTO implements Serializable {
 
     private static final long serialVersionUID = 6076109187134928213L;
+
     private int id;
-    private String firstName;
-    private String lastName;
+    private String someThing;
+    private String anotherThing;
 }

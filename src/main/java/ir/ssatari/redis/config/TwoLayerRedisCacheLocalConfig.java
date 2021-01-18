@@ -1,6 +1,6 @@
 package ir.ssatari.redis.config;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -12,18 +12,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 @Configuration
 @EnableCaching
-@EnableConfigurationProperties(CacheConfigurationProperties.class)
 public class TwoLayerRedisCacheLocalConfig extends CachingConfigurerSupport {
-
-    private final CacheConfigurationProperties properties;
-
-    public TwoLayerRedisCacheLocalConfig(CacheConfigurationProperties properties) {
-        this.properties = properties;
-    }
 
     @Bean
     public JedisConnectionFactory jedisConnectionFactory() {
-        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(properties.getRedisHost(), properties.getRedisPort());
+        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration("localhost", 6379);
         return new JedisConnectionFactory(redisStandaloneConfiguration);
     }
 

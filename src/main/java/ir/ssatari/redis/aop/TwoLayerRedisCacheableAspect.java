@@ -13,7 +13,6 @@ import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @Aspect
@@ -46,7 +45,7 @@ public class TwoLayerRedisCacheableAspect {
         return context;
     }
 
-    private String getCacheKeyFromAnnotationKeyValue(StandardEvaluationContext context, String key) {
+    private String getCacheKeyFromAnnotationKeyValue(StandardEvaluationContext context, String key){
         Expression expression = expressionParser.parseExpression(key);
         return (String) expression.getValue(context);
     }
@@ -67,7 +66,7 @@ public class TwoLayerRedisCacheableAspect {
         Object result;
         if (redisTemplate.hasKey(cacheKey)) {
             result = redisTemplate.opsForValue().get(cacheKey);
-            log.info("Reading from cache ..." + Objects.requireNonNull(result).toString());
+            log.info("Reading from cache ..." + result.toString());
 
             if (redisTemplate.getExpire(cacheKey, TimeUnit.MINUTES) < secondLayerTtl) {
                 log.info("Entry passed firstLevel period - trying to refresh it");
