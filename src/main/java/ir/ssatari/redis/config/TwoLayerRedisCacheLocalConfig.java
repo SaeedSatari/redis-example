@@ -1,6 +1,5 @@
 package ir.ssatari.redis.config;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -14,7 +13,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 @Configuration
 @EnableCaching
 @EnableConfigurationProperties(CacheConfigurationProperties.class)
-@Slf4j
 public class TwoLayerRedisCacheLocalConfig extends CachingConfigurerSupport {
 
     private final CacheConfigurationProperties properties;
